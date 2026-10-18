@@ -30,7 +30,7 @@ export class DesktopComposition {
       resourcesPath: process.resourcesPath,
       appPath: app.getAppPath(),
       platform: process.platform,
-      overridePath: process.env['MIXER_ENGINE_PATH'],
+      overridePath: process.env['LEVIMIXER_ENGINE_PATH'],
     });
     const repository = new JsonSessionRepository(join(app.getPath('userData'), 'session.json'));
     this.#supervisor = new EngineSupervisor(new ProcessEngineLauncher(commandLine, shutdownTimeoutMilliseconds), readyTimeoutMilliseconds);
@@ -50,7 +50,7 @@ export class DesktopComposition {
     this.#window = createMainWindow({
       iconPath: resourcePath('icon.png'),
       preloadPath: fileURLToPath(new URL('../preload/preload.cjs', import.meta.url)),
-      rendererUrl: process.env['MIXER_RENDERER_URL'],
+      rendererUrl: process.env['LEVIMIXER_RENDERER_URL'],
       rendererFile: fileURLToPath(new URL('../renderer/index.html', import.meta.url)),
     });
     this.#window.on('closed', () => {

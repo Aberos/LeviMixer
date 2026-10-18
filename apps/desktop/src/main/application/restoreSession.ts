@@ -1,4 +1,4 @@
-import type { EngineReply } from '@mixer/protocol';
+import type { EngineReply } from '@levimixer/protocol';
 import { toSessionPayload, withDefaultDevices, type Session } from '../domain/session.ts';
 import type { EngineGateway } from './engineGateway.ts';
 import type { SessionRepository } from './sessionRepository.ts';

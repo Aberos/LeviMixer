@@ -7,7 +7,7 @@ export interface TrayActions {
 
 export function trayMenuTemplate(isWindowVisible: boolean, actions: TrayActions): MenuItemConstructorOptions[] {
   return [
-    { label: isWindowVisible ? 'Ocultar Mixer' : 'Mostrar Mixer', click: actions.toggleWindow },
+    { label: isWindowVisible ? 'Ocultar LeviMixer' : 'Mostrar LeviMixer', click: actions.toggleWindow },
     { type: 'separator' },
     { label: 'Sair', click: actions.quit },
   ];

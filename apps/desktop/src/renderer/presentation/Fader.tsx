@@ -1,4 +1,4 @@
-import type { GainDecibels } from '@mixer/protocol';
+import type { GainDecibels } from '@levimixer/protocol';
 import { useRef, type KeyboardEvent, type PointerEvent, type WheelEvent } from 'react';
 import { formatGain } from '../domain/decibels.ts';
 import { decibelsToPosition, faderMarks, positionToDecibels } from '../domain/faderScale.ts';

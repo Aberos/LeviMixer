@@ -1,4 +1,4 @@
-import type { MixerState } from '@mixer/protocol';
+import type { MixerState } from '@levimixer/protocol';
 import { ChannelStrip } from './ChannelStrip.tsx';
 import { MasterStrip } from './MasterStrip.tsx';
 

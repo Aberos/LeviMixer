@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\LeviMixer.Application\LeviMixer.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LeviMixer.Infrastructure.Ipc.Tests" />
+  </ItemGroup>
+
+</Project>

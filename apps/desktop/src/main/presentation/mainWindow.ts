@@ -14,7 +14,7 @@ export function createMainWindow(content: WindowContent): BrowserWindow {
     minWidth: 640,
     minHeight: 520,
     backgroundColor: '#15171a',
-    title: 'Mixer',
+    title: 'LeviMixer',
     icon: content.iconPath,
     webPreferences: {
       preload: content.preloadPath,

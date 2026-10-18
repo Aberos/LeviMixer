@@ -1,5 +1,5 @@
 import type { IpcMain, WebContents } from 'electron';
-import type { EngineReply } from '@mixer/protocol';
+import type { EngineReply } from '@levimixer/protocol';
 import type { BridgeChannel, BridgeEvent, EngineStatus } from '../../shared/bridge.ts';
 import type { EngineSupervisor } from '../application/engineSupervisor.ts';
 import type { SessionKeeper } from '../application/sessionKeeper.ts';

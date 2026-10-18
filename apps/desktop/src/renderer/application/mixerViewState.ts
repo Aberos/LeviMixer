@@ -1,4 +1,4 @@
-import type { DeviceList, MixerState } from '@mixer/protocol';
+import type { DeviceList, MixerState } from '@levimixer/protocol';
 import type { EngineStatus } from '../../shared/bridge.ts';
 
 export interface MixerViewState {

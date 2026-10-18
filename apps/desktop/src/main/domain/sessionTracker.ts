@@ -1,4 +1,4 @@
-import type { EngineCommand, EngineMessage } from '@mixer/protocol';
+import type { EngineCommand, EngineMessage } from '@levimixer/protocol';
 import { applyCommand, sessionFromState, type Session } from './session.ts';
 
 export class SessionTracker {

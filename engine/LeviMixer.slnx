@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LeviMixer.Application/LeviMixer.Application.csproj" />
+    <Project Path="src/LeviMixer.Domain/LeviMixer.Domain.csproj" />
+    <Project Path="src/LeviMixer.Dsp/LeviMixer.Dsp.csproj" />
+    <Project Path="src/LeviMixer.Engine.Host/LeviMixer.Engine.Host.csproj" />
+    <Project Path="src/LeviMixer.Infrastructure.Ipc/LeviMixer.Infrastructure.Ipc.csproj" />
+    <Project Path="src/LeviMixer.Infrastructure.Miniaudio/LeviMixer.Infrastructure.Miniaudio.csproj" />
+    <Project Path="src/LeviMixer.Infrastructure.SystemAudio.Linux/LeviMixer.Infrastructure.SystemAudio.Linux.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/LeviMixer.Application.Tests/LeviMixer.Application.Tests.csproj" />
+    <Project Path="tests/LeviMixer.Domain.Tests/LeviMixer.Domain.Tests.csproj" />
+    <Project Path="tests/LeviMixer.Dsp.Tests/LeviMixer.Dsp.Tests.csproj" />
+    <Project Path="tests/LeviMixer.Infrastructure.Ipc.Tests/LeviMixer.Infrastructure.Ipc.Tests.csproj" />
+    <Project Path="tests/LeviMixer.Infrastructure.Miniaudio.Tests/LeviMixer.Infrastructure.Miniaudio.Tests.csproj" />
+    <Project Path="tests/LeviMixer.Infrastructure.SystemAudio.Linux.Tests/LeviMixer.Infrastructure.SystemAudio.Linux.Tests.csproj" />
+    <Project Path="tests/LeviMixer.Testing/LeviMixer.Testing.csproj" />
+  </Folder>
+</Solution>

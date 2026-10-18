@@ -1,5 +1,5 @@
 {
-  "name": "mixer",
+  "name": "levimixer",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -9,9 +9,9 @@
     "node": ">=24"
   },
   "scripts": {
-    "build:engine": "dotnet build engine/Mixer.slnx",
-    "dev": "npm run dev --workspace @mixer/desktop",
-    "start": "npm run start --workspace @mixer/desktop",
+    "build:engine": "dotnet build engine/LeviMixer.slnx",
+    "dev": "npm run dev --workspace @levimixer/desktop",
+    "start": "npm run start --workspace @levimixer/desktop",
     "test": "npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present"
   }

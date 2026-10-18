@@ -1,4 +1,4 @@
-import type { LevelReading } from '@mixer/protocol';
+import type { LevelReading } from '@levimixer/protocol';
 import { useRef } from 'react';
 import { advanceMeter, silentDisplay, type MeterDisplay } from '../domain/meterBallistics.ts';
 import { meterPosition, meterZone } from '../domain/meterScale.ts';

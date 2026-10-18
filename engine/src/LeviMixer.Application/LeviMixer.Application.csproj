@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\LeviMixer.Domain\LeviMixer.Domain.csproj" />
+    <ProjectReference Include="..\LeviMixer.Dsp\LeviMixer.Dsp.csproj" />
+  </ItemGroup>
+
+</Project>

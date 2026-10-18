@@ -1,4 +1,4 @@
-import type { GainDecibels } from '@mixer/protocol';
+import type { GainDecibels } from '@levimixer/protocol';
 
 export function formatGain(decibels: GainDecibels): string {
   if (decibels === null) {

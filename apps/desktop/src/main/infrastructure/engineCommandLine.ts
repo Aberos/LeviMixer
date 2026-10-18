@@ -21,11 +21,11 @@ export function resolveEngineCommandLine(location: EngineLocation): EngineComman
   }
 
   if (location.isPackaged) {
-    const executable = location.platform === 'win32' ? 'mixer-engine.exe' : 'mixer-engine';
+    const executable = location.platform === 'win32' ? 'levimixer-engine.exe' : 'levimixer-engine';
     return commandFor(join(location.resourcesPath, 'engine', executable));
   }
 
-  return commandFor(resolve(location.appPath, '..', '..', 'engine', 'src', 'Mixer.Engine.Host', 'bin', 'Debug', 'net10.0', 'mixer-engine.dll'));
+  return commandFor(resolve(location.appPath, '..', '..', 'engine', 'src', 'LeviMixer.Engine.Host', 'bin', 'Debug', 'net10.0', 'levimixer-engine.dll'));
 }
 
 function commandFor(path: string): EngineCommandLine {

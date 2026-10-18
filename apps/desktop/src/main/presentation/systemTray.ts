@@ -11,7 +11,7 @@ export class SystemTray {
     this.#window = window;
     this.#quit = quit;
     this.#tray = new Tray(nativeImage.createFromPath(iconPath));
-    this.#tray.setToolTip('Mixer');
+    this.#tray.setToolTip('LeviMixer');
     this.#tray.on('click', () => this.toggleWindow());
     window.on('minimize', () => window.hide());
     window.on('close', (event) => this.#hideInsteadOfClosing(event));

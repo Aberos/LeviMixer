@@ -1,4 +1,4 @@
-import type { ChannelState } from '@mixer/protocol';
+import type { ChannelState } from '@levimixer/protocol';
 import { sourceLabel } from '../domain/channelLabel.ts';
 import { ChannelName } from './ChannelName.tsx';
 import { Fader } from './Fader.tsx';

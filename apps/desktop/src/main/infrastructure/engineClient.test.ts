@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { EngineMessage } from '@mixer/protocol';
+import type { EngineMessage } from '@levimixer/protocol';
 import { FakeEngineTransport } from '../testing/fakeEngineTransport.ts';
 import { EngineClient } from './engineClient.ts';
 

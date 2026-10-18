@@ -1,4 +1,4 @@
-import type { AudioEndpoint, ConnectionState } from '@mixer/protocol';
+import type { AudioEndpoint, ConnectionState } from '@levimixer/protocol';
 import type { ChangeEvent } from 'react';
 import { useMixerServices, useMixerState } from './MixerContext.tsx';
 
@@ -17,7 +17,7 @@ export function TopBar() {
 
   return (
     <header className="top-bar">
-      <h1 className="brand">Mixer</h1>
+      <h1 className="brand">LeviMixer</h1>
       <DeviceSelect label="Entrada" endpoints={devices.inputs} value={connection?.inputDeviceId} onChange={(inputDeviceId) => choose({ inputDeviceId })} />
       <DeviceSelect label="Saída" endpoints={devices.outputs} value={connection?.outputDeviceId} onChange={(outputDeviceId) => choose({ outputDeviceId })} />
       <label className="field">

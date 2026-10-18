@@ -1,4 +1,4 @@
-import type { EngineCommand, EngineMessage } from '@mixer/protocol';
+import type { EngineCommand, EngineMessage } from '@levimixer/protocol';
 import type { SessionTracker } from '../domain/sessionTracker.ts';
 import type { SessionAutosave } from './sessionAutosave.ts';
 

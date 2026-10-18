@@ -1,4 +1,4 @@
-import type { EngineCommand, EngineReply } from '@mixer/protocol';
+import type { EngineCommand, EngineReply } from '@levimixer/protocol';
 import type { EngineStatus } from '../../shared/bridge.ts';
 import type { EngineGateway, MessageListener } from './engineGateway.ts';
 import type { EngineConnection, EngineLauncher } from './engineLauncher.ts';

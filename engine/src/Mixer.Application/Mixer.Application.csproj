@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <ItemGroup>
-    <ProjectReference Include="..\Mixer.Domain\Mixer.Domain.csproj" />
-    <ProjectReference Include="..\Mixer.Dsp\Mixer.Dsp.csproj" />
-  </ItemGroup>
-
-</Project>

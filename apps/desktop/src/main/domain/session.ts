@@ -1,4 +1,4 @@
-import type { ChannelSettings, EngineCommand, GainDecibels, MixerState, SessionPayload } from '@mixer/protocol';
+import type { ChannelSettings, EngineCommand, GainDecibels, MixerState, SessionPayload } from '@levimixer/protocol';
 
 export const sessionSchemaVersion = 1;
 

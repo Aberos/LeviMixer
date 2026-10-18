@@ -9,7 +9,7 @@ describe('JsonSessionRepository', () => {
   let directory: string;
 
   beforeEach(async () => {
-    directory = await mkdtemp(join(tmpdir(), 'mixer-session-'));
+    directory = await mkdtemp(join(tmpdir(), 'levimixer-session-'));
   });
 
   afterEach(async () => {

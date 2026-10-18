@@ -5,7 +5,7 @@ const contentSecurityPolicy = "default-src 'self'; script-src 'self'; style-src 
 
 function contentSecurityPolicyOnBuild(): Plugin {
   return {
-    name: 'mixer-content-security-policy',
+    name: 'levimixer-content-security-policy',
     apply: 'build',
     transformIndexHtml: () => [{ tag: 'meta', attrs: { 'http-equiv': 'Content-Security-Policy', content: contentSecurityPolicy }, injectTo: 'head-prepend' }],
   };

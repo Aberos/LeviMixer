@@ -5,11 +5,11 @@ const noActions = { toggleWindow: () => undefined, quit: () => undefined };
 
 describe('trayMenuTemplate', () => {
   it('offers to hide a visible window', () => {
-    expect(trayMenuTemplate(true, noActions)[0]?.label).toBe('Ocultar Mixer');
+    expect(trayMenuTemplate(true, noActions)[0]?.label).toBe('Ocultar LeviMixer');
   });
 
   it('offers to show a hidden window', () => {
-    expect(trayMenuTemplate(false, noActions)[0]?.label).toBe('Mostrar Mixer');
+    expect(trayMenuTemplate(false, noActions)[0]?.label).toBe('Mostrar LeviMixer');
   });
 
   it('ends with a quit entry wired to the quit action', () => {

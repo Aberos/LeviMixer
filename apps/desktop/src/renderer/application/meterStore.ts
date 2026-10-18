@@ -1,4 +1,4 @@
-import type { LevelReading, Meters } from '@mixer/protocol';
+import type { LevelReading, Meters } from '@levimixer/protocol';
 
 const silence: LevelReading = { peak: 0, rms: 0 };
 

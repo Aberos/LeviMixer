@@ -1,4 +1,4 @@
-import type { ChannelSettings } from '@mixer/protocol';
+import type { ChannelSettings } from '@levimixer/protocol';
 import { sessionSchemaVersion, type Session } from './session.ts';
 
 type UnknownRecord = Record<string, unknown>;

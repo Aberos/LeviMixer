@@ -22,7 +22,7 @@ const { ELECTRON_RUN_AS_NODE: _inheritedFromEditor, ...environment } = process.e
 const electron = spawn('npx', ['electron', '.'], {
   cwd: appRoot,
   stdio: 'inherit',
-  env: { ...environment, MIXER_RENDERER_URL: rendererUrl },
+  env: { ...environment, LEVIMIXER_RENDERER_URL: rendererUrl },
 });
 
 electron.on('exit', async (code) => {

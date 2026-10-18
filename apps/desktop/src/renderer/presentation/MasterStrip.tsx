@@ -1,4 +1,4 @@
-import type { GainDecibels } from '@mixer/protocol';
+import type { GainDecibels } from '@levimixer/protocol';
 import { Fader } from './Fader.tsx';
 import { LevelMeter } from './LevelMeter.tsx';
 import { useMixerServices } from './MixerContext.tsx';

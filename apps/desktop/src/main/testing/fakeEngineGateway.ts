@@ -1,4 +1,4 @@
-import type { EngineCommand, EngineReply } from '@mixer/protocol';
+import type { EngineCommand, EngineReply } from '@levimixer/protocol';
 import type { EngineGateway, MessageListener } from '../application/engineGateway.ts';
 
 export class FakeEngineGateway implements EngineGateway {

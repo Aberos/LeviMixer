@@ -1,4 +1,4 @@
-import type { EngineCommand, EngineMessage, EngineReply } from '@mixer/protocol';
+import type { EngineCommand, EngineMessage, EngineReply } from '@levimixer/protocol';
 
 export type MessageListener = (message: EngineMessage) => void;
 

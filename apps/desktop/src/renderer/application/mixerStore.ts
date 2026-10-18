@@ -1,4 +1,4 @@
-import type { ChannelState, EngineCommand, EngineMessage, EngineReply, GainDecibels, MixerState } from '@mixer/protocol';
+import type { ChannelState, EngineCommand, EngineMessage, EngineReply, GainDecibels, MixerState } from '@levimixer/protocol';
 import type { BridgeEvent } from '../../shared/bridge.ts';
 import type { MeterStore } from './meterStore.ts';
 import type { MixerGateway } from './mixerGateway.ts';

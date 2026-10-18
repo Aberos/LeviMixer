@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>levimixer-engine</AssemblyName>
+    <RootNamespace>LeviMixer.Engine.Host</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LeviMixer.Application\LeviMixer.Application.csproj" />
+    <ProjectReference Include="..\LeviMixer.Infrastructure.Miniaudio\LeviMixer.Infrastructure.Miniaudio.csproj" />
+    <ProjectReference Include="..\LeviMixer.Infrastructure.Ipc\LeviMixer.Infrastructure.Ipc.csproj" />
+    <ProjectReference Include="..\LeviMixer.Infrastructure.SystemAudio.Linux\LeviMixer.Infrastructure.SystemAudio.Linux.csproj" />
+  </ItemGroup>
+
+</Project>

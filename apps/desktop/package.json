@@ -1,7 +1,7 @@
 {
-  "name": "@mixer/desktop",
+  "name": "@levimixer/desktop",
   "version": "0.1.0",
-  "productName": "Mixer",
+  "productName": "LeviMixer",
   "private": true,
   "type": "module",
   "main": "out/main/main.js",
@@ -19,7 +19,7 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@mixer/protocol": "*",
+    "@levimixer/protocol": "*",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.7",

@@ -1,4 +1,4 @@
-import type { EngineCommand, EngineCommandType } from '@mixer/protocol';
+import type { EngineCommand, EngineCommandType } from '@levimixer/protocol';
 
 const rendererCommands: Record<Exclude<EngineCommandType, 'shutdown'>, true> = {
   listDevices: true,

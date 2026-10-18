@@ -1,4 +1,4 @@
-import type { MixerState } from '@mixer/protocol';
+import type { MixerState } from '@levimixer/protocol';
 import type { Session } from '../domain/session.ts';
 
 export const runningState: MixerState = {

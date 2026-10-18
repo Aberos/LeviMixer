@@ -1,4 +1,4 @@
-import type { GainDecibels } from '@mixer/protocol';
+import type { GainDecibels } from '@levimixer/protocol';
 
 interface ScalePoint {
   readonly position: number;
