@@ -19,9 +19,11 @@ const builderTargets = {
   darwin: '--mac',
 };
 
+const usesWindowsShell = platform() === 'win32';
+
 function run(command, args) {
   return new Promise((resolve, reject) => {
-    const child = spawn(command, args, { cwd: appRoot, stdio: 'inherit' });
+    const child = spawn(command, args, { cwd: appRoot, stdio: 'inherit', shell: usesWindowsShell });
     child.on('exit', (code) => (code === 0 ? resolve() : reject(new Error(`${command} ${args.join(' ')} exited with ${code}`))));
   });
 }

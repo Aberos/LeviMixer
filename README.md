@@ -77,6 +77,10 @@ dotnet run --project engine/src/LeviMixer.Engine.Host -- devices
 dotnet run --project engine/src/LeviMixer.Engine.Host -- run --master -12
 ```
 
+### Downloads
+
+Installers are attached to each version on the [Releases page](https://github.com/Aberos/LeviMixer/releases): `.deb` and `.AppImage` for Linux, `.exe` for Windows and `.dmg` for macOS (Apple Silicon). The Windows and macOS builds are not signed yet, so Windows shows a SmartScreen warning, and on macOS you may need to run `xattr -cr /Applications/LeviMixer.app` if it says the app is damaged.
+
 ### Building a release
 
 ```bash
@@ -185,6 +189,10 @@ O engine também roda sozinho no terminal, o que ajuda a testar uma interface no
 dotnet run --project engine/src/LeviMixer.Engine.Host -- devices
 dotnet run --project engine/src/LeviMixer.Engine.Host -- run --master -12
 ```
+
+### Downloads
+
+Os instaladores ficam anexados a cada versão na [página de Releases](https://github.com/Aberos/LeviMixer/releases): `.deb` e `.AppImage` para Linux, `.exe` para Windows e `.dmg` para macOS (Apple Silicon). As versões de Windows e macOS ainda não são assinadas, então o Windows mostra um aviso do SmartScreen, e no macOS pode ser preciso rodar `xattr -cr /Applications/LeviMixer.app` se aparecer que o app está danificado.
 
 ### Gerando uma release
 
