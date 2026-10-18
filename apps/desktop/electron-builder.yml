@@ -1,0 +1,37 @@
+appId: io.github.aberos.levimixer
+productName: LeviMixer
+electronVersion: 44.5.1
+npmRebuild: false
+artifactName: ${productName}-${version}-${arch}.${ext}
+extraMetadata:
+  name: levimixer
+  desktopName: levimixer.desktop
+directories:
+  output: release
+  buildResources: resources
+files:
+  - out/**
+  - resources/**
+  - package.json
+extraResources:
+  - from: build/engine
+    to: engine
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Audio
+  icon: resources/icon.png
+  synopsis: Mesa de som para o computador
+  executableName: levimixer
+deb:
+  recommends:
+    - pipewire-bin
+    - wireplumber
+win:
+  target: nsis
+  icon: resources/icon.png
+mac:
+  target: dmg
+  category: public.app-category.music
+  icon: resources/icon.png

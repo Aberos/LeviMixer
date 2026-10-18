@@ -77,6 +77,19 @@ dotnet run --project engine/src/LeviMixer.Engine.Host -- devices
 dotnet run --project engine/src/LeviMixer.Engine.Host -- run --master -12
 ```
 
+### Building a release
+
+```bash
+npm run release
+```
+
+This publishes the engine as a self-contained executable (no .NET install needed on the target machine), builds the app and packages it for the system you are on. On Linux the files land in `apps/desktop/release/`:
+
+- `LeviMixer-<version>-amd64.deb`, install with `sudo apt install ./LeviMixer-<version>-amd64.deb`
+- `LeviMixer-<version>-x86_64.AppImage`, a single file you can run directly (on Ubuntu 24.04 and newer it needs `sudo apt install libfuse2t64`)
+
+The Windows (`nsis`) and macOS (`dmg`) targets are configured too, but each one has to be built on its own system.
+
 ### Project layout
 
 ```
@@ -172,6 +185,19 @@ O engine também roda sozinho no terminal, o que ajuda a testar uma interface no
 dotnet run --project engine/src/LeviMixer.Engine.Host -- devices
 dotnet run --project engine/src/LeviMixer.Engine.Host -- run --master -12
 ```
+
+### Gerando uma release
+
+```bash
+npm run release
+```
+
+O comando publica o engine como um executável independente (a máquina de destino não precisa ter o .NET instalado), faz o build do app e empacota para o sistema em que você está. No Linux os arquivos ficam em `apps/desktop/release/`:
+
+- `LeviMixer-<versão>-amd64.deb`, instale com `sudo apt install ./LeviMixer-<versão>-amd64.deb`
+- `LeviMixer-<versão>-x86_64.AppImage`, um arquivo único que roda direto (no Ubuntu 24.04 ou mais novo precisa de `sudo apt install libfuse2t64`)
+
+Os alvos de Windows (`nsis`) e macOS (`dmg`) já estão configurados, mas cada um precisa ser gerado no próprio sistema.
 
 ### Organização do código
 

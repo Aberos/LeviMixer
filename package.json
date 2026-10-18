@@ -13,6 +13,7 @@
     "dev": "npm run dev --workspace @levimixer/desktop",
     "start": "npm run start --workspace @levimixer/desktop",
     "test": "npm run test --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "release": "npm run release --workspace @levimixer/desktop"
   }
 }

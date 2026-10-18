@@ -2,6 +2,13 @@
   "name": "@levimixer/desktop",
   "version": "0.1.0",
   "productName": "LeviMixer",
+  "description": "Mesa de som para o computador: entradas da interface de áudio e o áudio do PC em canais com fader, pan, mute e solo.",
+  "author": {
+    "name": "Mario Junior",
+    "email": "mariosj9@gmail.com"
+  },
+  "homepage": "https://github.com/Aberos/LeviMixer",
+  "license": "GPL-3.0-only",
   "private": true,
   "type": "module",
   "main": "out/main/main.js",
@@ -12,11 +19,8 @@
     "start": "npm run build && node scripts/start.mjs",
     "dev": "node scripts/dev.mjs",
     "test": "vitest run",
-    "typecheck": "tsc -p tsconfig.main.json --noEmit && tsc -p tsconfig.preload.json --noEmit && tsc -p tsconfig.renderer.json --noEmit"
-  },
-  "dependencies": {
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "typecheck": "tsc -p tsconfig.main.json --noEmit && tsc -p tsconfig.preload.json --noEmit && tsc -p tsconfig.renderer.json --noEmit",
+    "release": "node scripts/release.mjs"
   },
   "devDependencies": {
     "@levimixer/protocol": "*",
@@ -28,7 +32,10 @@
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.1.1",
     "electron": "44.5.1",
+    "electron-builder": "26.17.0",
     "jsdom": "30.1.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "typescript": "7.0.2",
     "vite": "8.3.2",
     "vitest": "5.0.3"
