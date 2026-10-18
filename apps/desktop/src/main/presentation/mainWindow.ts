@@ -1,6 +1,7 @@
 import { BrowserWindow } from 'electron';
 
 export interface WindowContent {
+  readonly iconPath: string;
   readonly preloadPath: string;
   readonly rendererUrl: string | undefined;
   readonly rendererFile: string;
@@ -14,6 +15,7 @@ export function createMainWindow(content: WindowContent): BrowserWindow {
     minHeight: 520,
     backgroundColor: '#15171a',
     title: 'Mixer',
+    icon: content.iconPath,
     webPreferences: {
       preload: content.preloadPath,
       contextIsolation: true,

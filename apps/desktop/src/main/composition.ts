@@ -10,6 +10,7 @@ import { resolveEngineCommandLine } from './infrastructure/engineCommandLine.ts'
 import { JsonSessionRepository } from './infrastructure/jsonSessionRepository.ts';
 import { ProcessEngineLauncher } from './infrastructure/processEngineLauncher.ts';
 import { createMainWindow } from './presentation/mainWindow.ts';
+import { SystemTray } from './presentation/systemTray.ts';
 import { registerRendererBridge } from './presentation/rendererBridge.ts';
 
 const readyTimeoutMilliseconds = 15_000;
@@ -21,6 +22,7 @@ export class DesktopComposition {
   readonly #sessionKeeper: SessionKeeper;
   readonly #restoreSession: RestoreSession;
   #window: BrowserWindow | null = null;
+  #tray: SystemTray | null = null;
 
   constructor() {
     const commandLine = resolveEngineCommandLine({
@@ -46,6 +48,7 @@ export class DesktopComposition {
       target: () => this.#window?.webContents ?? null,
     });
     this.#window = createMainWindow({
+      iconPath: resourcePath('icon.png'),
       preloadPath: fileURLToPath(new URL('../preload/preload.cjs', import.meta.url)),
       rendererUrl: process.env['MIXER_RENDERER_URL'],
       rendererFile: fileURLToPath(new URL('../renderer/index.html', import.meta.url)),
@@ -53,10 +56,17 @@ export class DesktopComposition {
     this.#window.on('closed', () => {
       this.#window = null;
     });
+    this.#tray = new SystemTray(resourcePath('tray.png'), this.#window, () => app.quit());
     await this.#startEngine();
   }
 
+  showWindow(): void {
+    this.#tray?.showWindow();
+  }
+
   async shutdown(): Promise<void> {
+    this.#tray?.destroy();
+    this.#tray = null;
     await this.#sessionKeeper.flush();
     await this.#supervisor.stop();
   }
@@ -70,4 +80,8 @@ export class DesktopComposition {
       process.stderr.write(`[desktop] ${error instanceof Error ? error.message : String(error)}\n`);
     }
   }
+}
+
+function resourcePath(fileName: string): string {
+  return join(app.getAppPath(), 'resources', fileName);
 }
