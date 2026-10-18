@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>mixer-engine</AssemblyName>
+    <RootNamespace>Mixer.Engine.Host</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mixer.Application\Mixer.Application.csproj" />
+    <ProjectReference Include="..\Mixer.Infrastructure.Miniaudio\Mixer.Infrastructure.Miniaudio.csproj" />
+  </ItemGroup>
+
+</Project>

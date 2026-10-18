@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Mixer.Application/Mixer.Application.csproj" />
+    <Project Path="src/Mixer.Domain/Mixer.Domain.csproj" />
+    <Project Path="src/Mixer.Dsp/Mixer.Dsp.csproj" />
+    <Project Path="src/Mixer.Engine.Host/Mixer.Engine.Host.csproj" />
+    <Project Path="src/Mixer.Infrastructure.Miniaudio/Mixer.Infrastructure.Miniaudio.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Mixer.Application.Tests/Mixer.Application.Tests.csproj" />
+    <Project Path="tests/Mixer.Domain.Tests/Mixer.Domain.Tests.csproj" />
+    <Project Path="tests/Mixer.Dsp.Tests/Mixer.Dsp.Tests.csproj" />
+    <Project Path="tests/Mixer.Infrastructure.Miniaudio.Tests/Mixer.Infrastructure.Miniaudio.Tests.csproj" />
+  </Folder>
+</Solution>
