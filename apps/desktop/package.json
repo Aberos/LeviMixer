@@ -1,6 +1,6 @@
 {
   "name": "@levimixer/desktop",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "productName": "LeviMixer",
   "description": "Mesa de som para o computador: entradas da interface de áudio e o áudio do PC em canais com fader, pan, mute e solo.",
   "author": {
