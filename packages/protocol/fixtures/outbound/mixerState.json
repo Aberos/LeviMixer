@@ -1,0 +1,15 @@
+{
+  "type": "mixerState",
+  "requestId": null,
+  "payload": {
+    "running": true,
+    "connection": { "inputDeviceId": "umc22-in", "outputDeviceId": "umc22-out", "sampleRate": 48000, "bufferFrames": 128 },
+    "channels": [
+      { "id": "in-1", "name": "Input 1", "source": "input", "inputIndex": 0, "gainDecibels": 0, "pan": 0, "muted": false, "soloed": false },
+      { "id": "in-2", "name": "Input 2", "source": "input", "inputIndex": 1, "gainDecibels": 0, "pan": 0, "muted": false, "soloed": false },
+      { "id": "pc", "name": "PC", "source": "system", "inputIndex": null, "gainDecibels": 0, "pan": 0, "muted": false, "soloed": false }
+    ],
+    "masterGainDecibels": 0,
+    "systemAudioError": null
+  }
+}

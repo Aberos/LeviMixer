@@ -5,4 +5,5 @@ internal enum HostCommand
     Help,
     ListDevices,
     Run,
+    Ipc,
 }

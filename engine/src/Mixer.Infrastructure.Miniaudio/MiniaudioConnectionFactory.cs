@@ -9,7 +9,7 @@ public sealed class MiniaudioConnectionFactory(MiniaudioContext context) : IAudi
     {
         ArgumentNullException.ThrowIfNull(request);
         var endpoints = context.Enumerate();
-        var devices = new DuplexDevicePair(endpoints.FindInput(request.Input.Id).NativeId, endpoints.FindOutput(request.Output.Id).NativeId);
+        var devices = new DeviceIdPair(endpoints.FindInput(request.Input.Id).NativeId, endpoints.FindOutput(request.Output.Id).NativeId);
         return MiniaudioDuplexConnection.Open(context, request, devices, processor);
     }
 }

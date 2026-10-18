@@ -1,5 +1,5 @@
 using Mixer.Application.Devices;
-using Mixer.Application.Tests.Fakes;
+using Mixer.Testing.Fakes;
 using Mixer.Application.UseCases;
 
 namespace Mixer.Application.Tests.UseCases;

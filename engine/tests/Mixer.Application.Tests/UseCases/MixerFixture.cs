@@ -1,6 +1,6 @@
 using Mixer.Application.Devices;
 using Mixer.Application.Session;
-using Mixer.Application.Tests.Fakes;
+using Mixer.Testing.Fakes;
 using Mixer.Application.UseCases;
 
 namespace Mixer.Application.Tests.UseCases;
@@ -9,13 +9,15 @@ internal sealed class MixerFixture : IDisposable
 {
     public MixerFixture()
     {
-        Session = new MixerSession(Connections);
+        Session = new MixerSession(Connections, SystemAudio);
         StartMixing = new StartMixing(Catalog, Session);
     }
 
     public FakeAudioDeviceCatalog Catalog { get; } = new();
 
     public FakeAudioConnectionFactory Connections { get; } = new();
+
+    public FakeSystemAudioCapture SystemAudio { get; } = new();
 
     public MixerSession Session { get; }
 

@@ -1,0 +1,1 @@
+{ "type": "setChannelSolo", "requestId": "r7", "payload": { "channelId": "in-1", "value": true } }

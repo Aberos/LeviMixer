@@ -15,6 +15,7 @@ internal static class EngineHost
         {
             HostCommand.ListDevices => new ListDevicesCommand(engine).Execute(),
             HostCommand.Run => new RunMixerCommand(engine, options).Execute(),
+            HostCommand.Ipc => new IpcCommand(engine).Execute(),
             _ => Usage.Print(),
         };
     }

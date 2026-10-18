@@ -1,0 +1,12 @@
+{
+  "type": "meters",
+  "requestId": null,
+  "payload": {
+    "channels": [
+      { "channelId": "in-1", "peak": 0.5, "rms": 0.25 },
+      { "channelId": "pc", "peak": 0, "rms": 0 }
+    ],
+    "masterLeft": { "peak": 0.5, "rms": 0.25 },
+    "masterRight": { "peak": 0.5, "rms": 0.25 }
+  }
+}

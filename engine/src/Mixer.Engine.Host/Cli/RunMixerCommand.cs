@@ -12,16 +12,16 @@ internal sealed class RunMixerCommand(EngineComposition engine, HostOptions opti
     public int Execute()
     {
         var format = new StreamFormat(StreamFormat.Default.SampleRate, options.BufferFrames);
-        var started = engine.StartMixing.Execute(new StartMixingRequest(options.Input, options.Output, format));
+        var started = engine.UseCases.StartMixing.Execute(new StartMixingRequest(options.Input, options.Output, format));
         if (started.Error is { } error)
         {
             System.Console.Error.WriteLine($"{error.Code}: {error.Message}");
             return 2;
         }
 
-        engine.SetMasterGain.Execute(options.MasterGain);
+        engine.UseCases.SetMasterGain.Execute(options.MasterGain);
         PrintMetersUntilStopped();
-        engine.StopMixing.Execute();
+        engine.UseCases.StopMixing.Execute();
         return 0;
     }
 
@@ -41,7 +41,7 @@ internal sealed class RunMixerCommand(EngineComposition engine, HostOptions opti
 
         while (!stop.Token.WaitHandle.WaitOne(MeterInterval))
         {
-            MeterLinePrinter.Print(engine.ReadMeters.Execute(), System.Console.Out);
+            MeterLinePrinter.Print(engine.UseCases.ReadMeters.Execute(), System.Console.Out);
         }
     }
 }

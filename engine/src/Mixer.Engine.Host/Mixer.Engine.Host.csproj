@@ -6,11 +6,14 @@
     <RootNamespace>Mixer.Engine.Host</RootNamespace>
     <InvariantGlobalization>true</InvariantGlobalization>
     <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mixer.Application\Mixer.Application.csproj" />
     <ProjectReference Include="..\Mixer.Infrastructure.Miniaudio\Mixer.Infrastructure.Miniaudio.csproj" />
+    <ProjectReference Include="..\Mixer.Infrastructure.Ipc\Mixer.Infrastructure.Ipc.csproj" />
+    <ProjectReference Include="..\Mixer.Infrastructure.SystemAudio.Linux\Mixer.Infrastructure.SystemAudio.Linux.csproj" />
   </ItemGroup>
 
 </Project>

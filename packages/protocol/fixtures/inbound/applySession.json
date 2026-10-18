@@ -1,0 +1,15 @@
+{
+  "type": "applySession",
+  "requestId": "r3",
+  "payload": {
+    "inputDeviceId": "umc22-in",
+    "outputDeviceId": "umc22-out",
+    "sampleRate": 48000,
+    "bufferFrames": 128,
+    "channels": [
+      { "id": "in-1", "name": "Vocal", "gainDecibels": -3, "pan": -0.5, "muted": false, "soloed": false },
+      { "id": "pc", "name": "PC", "gainDecibels": null, "pan": 0, "muted": true, "soloed": false }
+    ],
+    "masterGainDecibels": -6
+  }
+}

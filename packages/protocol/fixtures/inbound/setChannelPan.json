@@ -1,0 +1,1 @@
+{ "type": "setChannelPan", "requestId": "r8", "payload": { "channelId": "in-1", "pan": 0.25 } }

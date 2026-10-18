@@ -7,44 +7,32 @@ namespace Mixer.Engine.Host.Composition;
 internal sealed class EngineComposition : IDisposable
 {
     private readonly MiniaudioContext _audioContext = new();
+    private readonly PlatformAudio _platform;
     private readonly MixerSession _session;
+    private int _isDisposed;
 
     public EngineComposition()
     {
-        var catalog = new MiniaudioDeviceCatalog(_audioContext);
-        _session = new MixerSession(new MiniaudioConnectionFactory(_audioContext));
-        ListAudioDevices = new ListAudioDevices(catalog);
-        StartMixing = new StartMixing(catalog, _session);
-        StopMixing = new StopMixing(_session);
-        SetChannelGain = new SetChannelGain(_session);
-        SetChannelMute = new SetChannelMute(_session);
-        SetChannelSolo = new SetChannelSolo(_session);
-        SetChannelPan = new SetChannelPan(_session);
-        SetMasterGain = new SetMasterGain(_session);
-        ReadMeters = new ReadMeters(_session);
+        _platform = PlatformAudioFactory.Create(_audioContext);
+        _session = new MixerSession(new MiniaudioConnectionFactory(_audioContext), _platform.SystemAudioCapture);
+        UseCases = new MixerUseCases(_platform.Catalog, _session);
+        AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
     }
 
-    public ListAudioDevices ListAudioDevices { get; }
-
-    public StartMixing StartMixing { get; }
-
-    public StopMixing StopMixing { get; }
-
-    public SetChannelGain SetChannelGain { get; }
-
-    public SetChannelMute SetChannelMute { get; }
-
-    public SetChannelSolo SetChannelSolo { get; }
-
-    public SetChannelPan SetChannelPan { get; }
-
-    public SetMasterGain SetMasterGain { get; }
-
-    public ReadMeters ReadMeters { get; }
+    public MixerUseCases UseCases { get; }
 
     public void Dispose()
     {
+        if (Interlocked.Exchange(ref _isDisposed, 1) == 1)
+        {
+            return;
+        }
+
+        AppDomain.CurrentDomain.ProcessExit -= OnProcessExit;
         _session.Dispose();
+        _platform.Resources?.Dispose();
         _audioContext.Dispose();
     }
+
+    private void OnProcessExit(object? sender, EventArgs eventArgs) => Dispose();
 }

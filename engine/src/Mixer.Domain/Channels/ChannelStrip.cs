@@ -4,7 +4,14 @@ namespace Mixer.Domain.Channels;
 
 public sealed record ChannelStrip(ChannelId Id, string Name, ChannelSource Source)
 {
+    private readonly string _name = ChannelName.Normalize(Name);
     private readonly Decibels _gain = Decibels.Unity;
+
+    public string Name
+    {
+        get => _name;
+        init => _name = ChannelName.Normalize(value);
+    }
 
     public Decibels Gain
     {

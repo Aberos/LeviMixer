@@ -31,6 +31,7 @@ internal sealed record HostOptions(HostCommand Command)
     {
         "devices" => HostCommand.ListDevices,
         "run" => HostCommand.Run,
+        "ipc" => HostCommand.Ipc,
         _ => HostCommand.Help,
     };
 

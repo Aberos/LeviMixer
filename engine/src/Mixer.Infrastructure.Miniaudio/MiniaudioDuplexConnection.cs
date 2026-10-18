@@ -11,23 +11,23 @@ internal sealed unsafe class MiniaudioDuplexConnection : IAudioConnection
     private const int OutputChannelCount = 2;
 
     private readonly IAudioBlockProcessor _processor;
-    private readonly NativeDuplexDevice _native;
+    private readonly NativeDevice _native;
     private readonly int _inputChannelCount;
     private GCHandle _self;
     private bool _isInitialized;
 
-    private MiniaudioDuplexConnection(AudioConnectionRequest request, DuplexDevicePair devices, IAudioBlockProcessor processor)
+    private MiniaudioDuplexConnection(AudioConnectionRequest request, DeviceIdPair devices, IAudioBlockProcessor processor)
     {
         Request = request;
         _processor = processor;
         _inputChannelCount = request.Input.ChannelCount;
-        _native = new NativeDuplexDevice(devices);
+        _native = new NativeDevice(devices);
         _self = GCHandle.Alloc(this);
     }
 
     public AudioConnectionRequest Request { get; }
 
-    public static MiniaudioDuplexConnection Open(MiniaudioContext context, AudioConnectionRequest request, DuplexDevicePair devices, IAudioBlockProcessor processor)
+    public static MiniaudioDuplexConnection Open(MiniaudioContext context, AudioConnectionRequest request, DeviceIdPair devices, IAudioBlockProcessor processor)
     {
         var connection = new MiniaudioDuplexConnection(request, devices, processor);
         try

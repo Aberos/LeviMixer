@@ -1,0 +1,13 @@
+{
+  "type": "devices",
+  "requestId": "r1",
+  "payload": {
+    "inputs": [
+      { "id": "umc22-in", "name": "UMC22", "channelCount": 2, "isDefault": true },
+      { "id": "big-in", "name": "Big Interface", "channelCount": 4, "isDefault": false }
+    ],
+    "outputs": [
+      { "id": "umc22-out", "name": "UMC22", "channelCount": 2, "isDefault": true }
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+{ "type": "startMixing", "requestId": "r2", "payload": { "inputDeviceId": "umc22-in", "outputDeviceId": "umc22-out", "sampleRate": 48000, "bufferFrames": 128 } }

@@ -1,0 +1,1 @@
+{ "type": "setChannelGain", "requestId": "r4", "payload": { "channelId": "in-1", "gainDecibels": -12.5 } }

@@ -1,0 +1,1 @@
+{ "type": "renameChannel", "requestId": "r9", "payload": { "channelId": "in-2", "name": "Guitar" } }

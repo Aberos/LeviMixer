@@ -4,12 +4,17 @@
     <Project Path="src/Mixer.Domain/Mixer.Domain.csproj" />
     <Project Path="src/Mixer.Dsp/Mixer.Dsp.csproj" />
     <Project Path="src/Mixer.Engine.Host/Mixer.Engine.Host.csproj" />
+    <Project Path="src/Mixer.Infrastructure.Ipc/Mixer.Infrastructure.Ipc.csproj" />
     <Project Path="src/Mixer.Infrastructure.Miniaudio/Mixer.Infrastructure.Miniaudio.csproj" />
+    <Project Path="src/Mixer.Infrastructure.SystemAudio.Linux/Mixer.Infrastructure.SystemAudio.Linux.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Mixer.Application.Tests/Mixer.Application.Tests.csproj" />
     <Project Path="tests/Mixer.Domain.Tests/Mixer.Domain.Tests.csproj" />
     <Project Path="tests/Mixer.Dsp.Tests/Mixer.Dsp.Tests.csproj" />
+    <Project Path="tests/Mixer.Infrastructure.Ipc.Tests/Mixer.Infrastructure.Ipc.Tests.csproj" />
     <Project Path="tests/Mixer.Infrastructure.Miniaudio.Tests/Mixer.Infrastructure.Miniaudio.Tests.csproj" />
+    <Project Path="tests/Mixer.Infrastructure.SystemAudio.Linux.Tests/Mixer.Infrastructure.SystemAudio.Linux.Tests.csproj" />
+    <Project Path="tests/Mixer.Testing/Mixer.Testing.csproj" />
   </Folder>
 </Solution>

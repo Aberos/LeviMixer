@@ -23,4 +23,23 @@ public sealed class ChannelStripTests
 
         Assert.Equal(FaderRange.Maximum, strip.Gain);
     }
+
+    [Fact]
+    public void Name_is_trimmed()
+    {
+        var strip = new ChannelStrip(new ChannelId("in-1"), "  Vocal  ", new InterfaceInput(0));
+
+        Assert.Equal("Vocal", strip.Name);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("   ")]
+    [InlineData("A name that is way too long for a strip")]
+    public void Invalid_names_are_rejected(string name)
+    {
+        var strip = new ChannelStrip(new ChannelId("in-1"), "Mic", new InterfaceInput(0));
+
+        Assert.Throws<ArgumentException>(() => strip with { Name = name });
+    }
 }

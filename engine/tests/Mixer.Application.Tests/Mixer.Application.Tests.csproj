@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Mixer.Application\Mixer.Application.csproj" />
+    <ProjectReference Include="..\Mixer.Testing\Mixer.Testing.csproj" />
   </ItemGroup>
 
 </Project>

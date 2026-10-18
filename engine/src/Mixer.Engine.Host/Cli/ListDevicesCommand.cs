@@ -7,7 +7,7 @@ internal sealed class ListDevicesCommand(EngineComposition engine)
 {
     public int Execute()
     {
-        DeviceListPrinter.Print(engine.ListAudioDevices.Execute(), System.Console.Out);
+        DeviceListPrinter.Print(engine.UseCases.ListAudioDevices.Execute(), System.Console.Out);
         return 0;
     }
 }
