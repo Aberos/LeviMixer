@@ -7,8 +7,8 @@ namespace LeviMixer.Application.Session;
 internal sealed class SystemAudioPipeline
 {
     private const int RingCapacitySamples = 32_768;
-    private const int MinimumLatencyFrames = 1_024;
-    private const int BlocksOfLatency = 4;
+    private const int MinimumLatencyFrames = 384;
+    private const int BlocksOfLatency = 3;
 
     public SystemAudioPipeline(IAudioBlockProcessor mixer, int bufferFrames, int maxFramesPerBlock)
     {

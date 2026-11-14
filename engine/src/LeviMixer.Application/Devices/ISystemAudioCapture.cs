@@ -4,5 +4,5 @@ namespace LeviMixer.Application.Devices;
 
 public interface ISystemAudioCapture
 {
-    IDisposable Start(ISampleWriter destination, int sampleRate);
+    IDisposable Start(ISampleWriter destination, StreamFormat format);
 }

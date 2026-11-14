@@ -19,6 +19,17 @@ public sealed class SystemAudioTests
     }
 
     [Fact]
+    public void Capture_uses_the_session_stream_format()
+    {
+        using var mixer = new MixerFixture();
+        var format = new StreamFormat(48_000, 256);
+
+        mixer.StartMixing.Execute(new StartMixingRequest(null, null, format));
+
+        Assert.Equal(format, mixer.SystemAudio.Started[^1].Format);
+    }
+
+    [Fact]
     public void Capture_failure_is_reported_but_mixing_continues()
     {
         using var mixer = new MixerFixture();

@@ -14,7 +14,7 @@ internal sealed class EngineComposition : IDisposable
     public EngineComposition()
     {
         _platform = PlatformAudioFactory.Create(_audioContext);
-        _session = new MixerSession(new MiniaudioConnectionFactory(_audioContext), _platform.SystemAudioCapture);
+        _session = new MixerSession(_platform.Connections, _platform.SystemAudioCapture);
         UseCases = new MixerUseCases(_platform.Catalog, _session);
         AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
     }

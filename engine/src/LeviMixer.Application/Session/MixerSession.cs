@@ -51,7 +51,7 @@ public sealed class MixerSession : IDisposable
             var engine = new MixEngine(new MixEngineCapacity(request.Format.SampleRate, MaxFramesPerBlock, initialState.Channels.Length));
             engine.Apply(MixSnapshot.From(initialState));
             var pipeline = new SystemAudioPipeline(engine, request.Format.BufferFrames, MaxFramesPerBlock);
-            StartSystemAudio(pipeline, request.Format.SampleRate);
+            StartSystemAudio(pipeline, request.Format);
             OpenConnection(request, pipeline);
             _engine = engine;
             _state = initialState;
@@ -97,11 +97,11 @@ public sealed class MixerSession : IDisposable
 
     public void Dispose() => Stop();
 
-    private void StartSystemAudio(SystemAudioPipeline pipeline, int sampleRate)
+    private void StartSystemAudio(SystemAudioPipeline pipeline, StreamFormat format)
     {
         try
         {
-            _systemAudio = _systemAudioCapture.Start(pipeline.Ring, sampleRate);
+            _systemAudio = _systemAudioCapture.Start(pipeline.Ring, format);
             _systemAudioError = null;
         }
         catch (AudioDeviceException exception)

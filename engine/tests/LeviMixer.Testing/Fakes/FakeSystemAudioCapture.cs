@@ -11,14 +11,14 @@ public sealed class FakeSystemAudioCapture : ISystemAudioCapture
 
     public IReadOnlyList<FakeSystemAudioFeed> Started => _started;
 
-    public IDisposable Start(ISampleWriter destination, int sampleRate)
+    public IDisposable Start(ISampleWriter destination, StreamFormat format)
     {
         if (FailureReason is not null)
         {
             throw new AudioDeviceException(FailureReason);
         }
 
-        var feed = new FakeSystemAudioFeed(destination);
+        var feed = new FakeSystemAudioFeed(destination, format);
         _started.Add(feed);
         return feed;
     }

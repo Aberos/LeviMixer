@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Hexa.NET.MiniAudio;
+using LeviMixer.Application.Devices;
 using LeviMixer.Dsp.Buffers;
 
 namespace LeviMixer.Infrastructure.Miniaudio;
@@ -11,21 +12,21 @@ internal sealed unsafe class MiniaudioCaptureConnection : IDisposable
 
     private readonly ISampleWriter _destination;
     private readonly NativeDevice _native;
-    private readonly int _sampleRate;
+    private readonly StreamFormat _format;
     private GCHandle _self;
     private bool _isInitialized;
 
-    private MiniaudioCaptureConnection(MaDeviceId device, int sampleRate, ISampleWriter destination)
+    private MiniaudioCaptureConnection(MaDeviceId device, StreamFormat format, ISampleWriter destination)
     {
         _destination = destination;
-        _sampleRate = sampleRate;
+        _format = format;
         _native = new NativeDevice(new DeviceIdPair(device, device));
         _self = GCHandle.Alloc(this);
     }
 
-    public static MiniaudioCaptureConnection Open(MiniaudioContext context, MaDeviceId device, int sampleRate, ISampleWriter destination)
+    public static MiniaudioCaptureConnection Open(MiniaudioContext context, MaDeviceId device, StreamFormat format, ISampleWriter destination)
     {
-        var connection = new MiniaudioCaptureConnection(device, sampleRate, destination);
+        var connection = new MiniaudioCaptureConnection(device, format, destination);
         try
         {
             connection.Initialize(context);
@@ -57,7 +58,9 @@ internal sealed unsafe class MiniaudioCaptureConnection : IDisposable
     private void Initialize(MiniaudioContext context)
     {
         var config = MiniAudio.DeviceConfigInit(MaDeviceType.Capture);
-        config.SampleRate = (uint)_sampleRate;
+        config.SampleRate = (uint)_format.SampleRate;
+        config.PeriodSizeInFrames = (uint)_format.BufferFrames;
+        config.PerformanceProfile = MaPerformanceProfile.LowLatency;
         config.Capture.PDeviceID = _native.CaptureId;
         config.Capture.Format = MaFormat.F32;
         config.Capture.Channels = Channels;

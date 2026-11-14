@@ -2,4 +2,4 @@ using LeviMixer.Application.Devices;
 
 namespace LeviMixer.Engine.Host.Composition;
 
-internal sealed record PlatformAudio(IAudioDeviceCatalog Catalog, ISystemAudioCapture SystemAudioCapture, IDisposable? Resources);
+internal sealed record PlatformAudio(IAudioDeviceCatalog Catalog, IAudioConnectionFactory Connections, ISystemAudioCapture SystemAudioCapture, IDisposable? Resources);

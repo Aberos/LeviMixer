@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\LeviMixer.Infrastructure.SystemAudio.Linux\LeviMixer.Infrastructure.SystemAudio.Linux.csproj" />
+    <ProjectReference Include="..\LeviMixer.Testing\LeviMixer.Testing.csproj" />
   </ItemGroup>
 
 </Project>

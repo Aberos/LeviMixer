@@ -27,10 +27,10 @@ public sealed class PipeWireSystemAudioCapture : ISystemAudioCapture, IDefaultOu
 
     public string? OriginalDefaultOutputName { get; private set; }
 
-    public IDisposable Start(ISampleWriter destination, int sampleRate)
+    public IDisposable Start(ISampleWriter destination, StreamFormat format)
     {
         var monitor = EnsureVirtualSink();
-        return _captures.OpenStereo(monitor.Id, sampleRate, destination);
+        return _captures.OpenStereo(monitor.Id, format, destination);
     }
 
     public void Dispose()
