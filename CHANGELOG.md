@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/Aberos/LeviMixer/compare/v1.1.0...v1.2.0) (2026-11-14)
+
+
+### Features
+
+* **engine:** duplex da interface via nó PipeWire nativo no Linux ([c2d6047](https://github.com/Aberos/LeviMixer/commit/c2d6047f0b1eb5f6836a9218fe82280f647f5ef7))
+
+
+### Performance Improvements
+
+* **engine:** reduz latência da captura do áudio do PC ([c2d6047](https://github.com/Aberos/LeviMixer/commit/c2d6047f0b1eb5f6836a9218fe82280f647f5ef7))
+
 ## [1.1.0](https://github.com/Aberos/LeviMixer/compare/v1.0.0...v1.1.0) (2026-10-18)
 
 
