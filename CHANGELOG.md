@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/Aberos/LeviMixer/compare/v1.2.0...v1.2.1) (2026-11-16)
+
+
+### Bug Fixes
+
+* ajuste funcionamento no windows usando vb-cable ([d3107bc](https://github.com/Aberos/LeviMixer/commit/d3107bc2101dcb61bd2572ac0b27092cbe6249f1))
+
 ## [1.2.0](https://github.com/Aberos/LeviMixer/compare/v1.1.0...v1.2.0) (2026-11-14)
 
 
