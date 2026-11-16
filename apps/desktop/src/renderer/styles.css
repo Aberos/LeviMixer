@@ -124,6 +124,16 @@ body {
   cursor: pointer;
 }
 
+.button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.banner .button {
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
 .engine-status {
   display: flex;
   flex: 1;

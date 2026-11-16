@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LeviMixer.Infrastructure.Miniaudio\LeviMixer.Infrastructure.Miniaudio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LeviMixer.Infrastructure.SystemAudio.Windows.Tests" />
+  </ItemGroup>
+
+</Project>

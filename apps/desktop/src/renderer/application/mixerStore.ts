@@ -1,5 +1,5 @@
 import type { ChannelState, EngineCommand, EngineMessage, EngineReply, GainDecibels, MixerState } from '@levimixer/protocol';
-import type { BridgeEvent } from '../../shared/bridge.ts';
+import type { BridgeEvent, DriverInstallProgress } from '../../shared/bridge.ts';
 import type { MeterStore } from './meterStore.ts';
 import type { MixerGateway } from './mixerGateway.ts';
 import { initialViewState, type MixerViewState } from './mixerViewState.ts';
@@ -89,6 +89,19 @@ export class MixerStore {
     return this.#gateway.restartEngine();
   }
 
+  async installSystemAudioDriver(): Promise<void> {
+    if (this.#isInstallingDriver()) {
+      return;
+    }
+
+    this.#update({ driverInstall: 'downloading', driverDownloadPercent: null });
+    try {
+      this.#update({ driverInstall: await this.#gateway.installSystemAudioDriver() });
+    } catch (error) {
+      this.#update({ driverInstall: 'idle', error: error instanceof Error ? error.message : String(error) });
+    }
+  }
+
   dismissError(): void {
     this.#update({ error: null });
   }
@@ -102,16 +115,37 @@ export class MixerStore {
   }
 
   #handle(event: BridgeEvent): void {
-    if (event.kind === 'status') {
-      this.#update({ status: event.status });
-      if (event.status.state === 'running') {
-        void this.refresh();
-      }
+    switch (event.kind) {
+      case 'status':
+        this.#update({ status: event.status });
+        if (event.status.state === 'running') {
+          void this.refresh();
+        }
 
+        return;
+      case 'driverInstall':
+        this.#trackDriverInstall(event.progress);
+        return;
+      case 'engine':
+        this.#apply(event.message);
+        return;
+    }
+  }
+
+  #trackDriverInstall(progress: DriverInstallProgress): void {
+    if (!this.#isInstallingDriver()) {
       return;
     }
 
-    this.#apply(event.message);
+    this.#update(
+      progress.stage === 'downloading'
+        ? { driverInstall: 'downloading', driverDownloadPercent: progress.percent }
+        : { driverInstall: 'runningSetup', driverDownloadPercent: null },
+    );
+  }
+
+  #isInstallingDriver(): boolean {
+    return this.#state.driverInstall === 'downloading' || this.#state.driverInstall === 'runningSetup';
   }
 
   #apply(message: EngineMessage | EngineReply): void {

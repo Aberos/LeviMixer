@@ -1,5 +1,5 @@
 import type { EngineCommand, EngineReply, MixerState } from '@levimixer/protocol';
-import type { BridgeEvent, EngineStatus } from '../../shared/bridge.ts';
+import type { BridgeEvent, DriverInstallOutcome, EngineStatus } from '../../shared/bridge.ts';
 import type { MixerGateway } from '../application/mixerGateway.ts';
 
 export const mixerState: MixerState = {
@@ -11,6 +11,7 @@ export const mixerState: MixerState = {
   ],
   masterGainDecibels: 0,
   systemAudioError: null,
+  systemAudioErrorCode: null,
 };
 
 export class FakeMixerGateway implements MixerGateway {
@@ -18,7 +19,12 @@ export class FakeMixerGateway implements MixerGateway {
   readonly #listeners = new Set<(event: BridgeEvent) => void>();
   status: EngineStatus = { state: 'running', engineVersion: '0.1.0' };
   restarts = 0;
+  driverInstalls = 0;
+  driverInstallOutcome: DriverInstallOutcome = 'installed';
+  driverInstallFailure: string | null = null;
+  holdDriverInstall = false;
   failNextWith: string | null = null;
+  #finishDriverInstall: () => void = () => undefined;
 
   request(command: EngineCommand): Promise<EngineReply> {
     this.requests.push(command);
@@ -38,6 +44,21 @@ export class FakeMixerGateway implements MixerGateway {
   restartEngine(): Promise<void> {
     this.restarts++;
     return Promise.resolve();
+  }
+
+  installSystemAudioDriver(): Promise<DriverInstallOutcome> {
+    this.driverInstalls++;
+    if (this.holdDriverInstall) {
+      return new Promise((resolve) => {
+        this.#finishDriverInstall = () => resolve(this.driverInstallOutcome);
+      });
+    }
+
+    return this.driverInstallFailure === null ? Promise.resolve(this.driverInstallOutcome) : Promise.reject(new Error(this.driverInstallFailure));
+  }
+
+  finishDriverInstall(): void {
+    this.#finishDriverInstall();
   }
 
   onEvent(listener: (event: BridgeEvent) => void): () => void {

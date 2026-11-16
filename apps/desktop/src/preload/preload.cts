@@ -10,6 +10,7 @@ const bridge: MixerBridge = {
   request: (command) => ipcRenderer.invoke(channel('mixer:request'), command),
   engineStatus: () => ipcRenderer.invoke(channel('mixer:status')),
   restartEngine: () => ipcRenderer.invoke(channel('mixer:restart')),
+  installSystemAudioDriver: () => ipcRenderer.invoke(channel('mixer:installDriver')),
   onEvent: (listener) => {
     const handler = (_event: IpcRendererEvent, bridgeEvent: BridgeEvent): void => listener(bridgeEvent);
     ipcRenderer.on(channel('mixer:event'), handler);

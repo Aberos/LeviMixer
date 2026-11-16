@@ -1,14 +1,19 @@
-import { app, ipcMain, type BrowserWindow } from 'electron';
+import { app, ipcMain, shell, type BrowserWindow } from 'electron';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { EngineSupervisor } from './application/engineSupervisor.ts';
+import { InstallSystemAudioDriver } from './application/installSystemAudioDriver.ts';
 import { RestoreSession } from './application/restoreSession.ts';
 import { SessionAutosave } from './application/sessionAutosave.ts';
 import { SessionKeeper } from './application/sessionKeeper.ts';
 import { SessionTracker } from './domain/sessionTracker.ts';
 import { resolveEngineCommandLine } from './infrastructure/engineCommandLine.ts';
+import { httpDownload } from './infrastructure/httpDownload.ts';
 import { JsonSessionRepository } from './infrastructure/jsonSessionRepository.ts';
+import { runPowerShell } from './infrastructure/powerShell.ts';
 import { ProcessEngineLauncher } from './infrastructure/processEngineLauncher.ts';
+import { VbCableInstaller } from './infrastructure/vbCableInstaller.ts';
 import { createMainWindow } from './presentation/mainWindow.ts';
 import { SystemTray } from './presentation/systemTray.ts';
 import { registerRendererBridge } from './presentation/rendererBridge.ts';
@@ -21,6 +26,7 @@ export class DesktopComposition {
   readonly #supervisor: EngineSupervisor;
   readonly #sessionKeeper: SessionKeeper;
   readonly #restoreSession: RestoreSession;
+  readonly #installSystemAudioDriver: InstallSystemAudioDriver;
   #window: BrowserWindow | null = null;
   #tray: SystemTray | null = null;
 
@@ -36,6 +42,16 @@ export class DesktopComposition {
     this.#supervisor = new EngineSupervisor(new ProcessEngineLauncher(commandLine, shutdownTimeoutMilliseconds), readyTimeoutMilliseconds);
     this.#sessionKeeper = new SessionKeeper(new SessionTracker(), new SessionAutosave(repository, autosaveDelayMilliseconds));
     this.#restoreSession = new RestoreSession(this.#supervisor, repository);
+    this.#installSystemAudioDriver = new InstallSystemAudioDriver(
+      new VbCableInstaller({
+        download: httpDownload,
+        runPowerShell,
+        openExternal: (url) => shell.openExternal(url),
+        architecture: process.arch,
+        temporaryRoot: tmpdir(),
+      }),
+      () => this.#startEngine(),
+    );
     this.#supervisor.onMessage((message) => this.#sessionKeeper.observe(message));
   }
 
@@ -45,6 +61,7 @@ export class DesktopComposition {
       supervisor: this.#supervisor,
       sessionKeeper: this.#sessionKeeper,
       restartEngine: () => this.#startEngine(),
+      installSystemAudioDriver: (onProgress) => this.#installSystemAudioDriver.execute(onProgress),
       target: () => this.#window?.webContents ?? null,
     });
     this.#window = createMainWindow({

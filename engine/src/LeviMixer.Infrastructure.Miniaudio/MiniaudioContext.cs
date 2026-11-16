@@ -44,6 +44,8 @@ public sealed unsafe class MiniaudioContext : IDisposable
         }
     }
 
+    public string WasapiOutputIdOf(AudioDeviceId output) => WideStringOf(Enumerate().FindOutput(output).NativeId);
+
     public void Dispose()
     {
         if (_context == null)
@@ -55,6 +57,8 @@ public sealed unsafe class MiniaudioContext : IDisposable
         NativeMemory.Free(_context);
         _context = null;
     }
+
+    private static string WideStringOf(MaDeviceId id) => Marshal.PtrToStringUni((nint)(&id)) ?? string.Empty;
 
     private ImmutableArray<NativeEndpoint> Describe(MaDeviceInfo* devices, uint count, MaDeviceType type)
     {
@@ -83,13 +87,7 @@ public sealed unsafe class MiniaudioContext : IDisposable
             return StereoFallbackChannelCount;
         }
 
-        var formats = details.NativeDataFormats[..(int)details.NativeDataFormatCount];
-        var channels = 0u;
-        foreach (var format in formats)
-        {
-            channels = Math.Max(channels, format.Channels);
-        }
-
+        var channels = DeviceChannelCount.Of(details.NativeDataFormats[..(int)details.NativeDataFormatCount]);
         return channels == 0 ? StereoFallbackChannelCount : (int)channels;
     }
 }

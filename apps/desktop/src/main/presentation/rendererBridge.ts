@@ -1,6 +1,6 @@
 import type { IpcMain, WebContents } from 'electron';
 import type { EngineReply } from '@levimixer/protocol';
-import type { BridgeChannel, BridgeEvent, EngineStatus } from '../../shared/bridge.ts';
+import type { BridgeChannel, BridgeEvent, DriverInstallOutcome, DriverInstallProgress, EngineStatus } from '../../shared/bridge.ts';
 import type { EngineSupervisor } from '../application/engineSupervisor.ts';
 import type { SessionKeeper } from '../application/sessionKeeper.ts';
 import { isRendererCommand } from './commandGuard.ts';
@@ -10,6 +10,7 @@ export interface RendererBridgeDependencies {
   readonly supervisor: EngineSupervisor;
   readonly sessionKeeper: SessionKeeper;
   readonly restartEngine: () => Promise<void>;
+  readonly installSystemAudioDriver: (onProgress: (progress: DriverInstallProgress) => void) => Promise<DriverInstallOutcome>;
   readonly target: () => WebContents | null;
 }
 
@@ -17,11 +18,12 @@ const channels = {
   request: 'mixer:request',
   status: 'mixer:status',
   restart: 'mixer:restart',
+  installDriver: 'mixer:installDriver',
   event: 'mixer:event',
 } as const satisfies Record<string, BridgeChannel>;
 
 export function registerRendererBridge(dependencies: RendererBridgeDependencies): void {
-  const { ipc, supervisor, sessionKeeper, restartEngine, target } = dependencies;
+  const { ipc, supervisor, sessionKeeper, restartEngine, installSystemAudioDriver, target } = dependencies;
   const publish = (event: BridgeEvent): void => target()?.send(channels.event, event);
 
   ipc.handle(channels.request, (_event, command: unknown): Promise<EngineReply> => {
@@ -34,6 +36,7 @@ export function registerRendererBridge(dependencies: RendererBridgeDependencies)
   });
   ipc.handle(channels.status, (): EngineStatus => supervisor.status);
   ipc.handle(channels.restart, () => restartEngine());
+  ipc.handle(channels.installDriver, () => installSystemAudioDriver((progress) => publish({ kind: 'driverInstall', progress })));
 
   supervisor.onMessage((message) => publish({ kind: 'engine', message }));
   supervisor.onStatus((status) => publish({ kind: 'status', status }));

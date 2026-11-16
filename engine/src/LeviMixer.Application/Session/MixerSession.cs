@@ -18,7 +18,7 @@ public sealed class MixerSession : IDisposable
     private MixEngine? _engine;
     private IAudioConnection? _connection;
     private IDisposable? _systemAudio;
-    private string? _systemAudioError;
+    private SystemAudioFailure? _systemAudioFailure;
 
     public MixerSession(IAudioConnectionFactory connectionFactory, ISystemAudioCapture systemAudioCapture)
     {
@@ -36,7 +36,7 @@ public sealed class MixerSession : IDisposable
         {
             lock (_gate)
             {
-                return new MixerStatus(_state, _connection?.Request, _systemAudioError);
+                return new MixerStatus(_state, _connection?.Request, _systemAudioFailure);
             }
         }
     }
@@ -102,11 +102,15 @@ public sealed class MixerSession : IDisposable
         try
         {
             _systemAudio = _systemAudioCapture.Start(pipeline.Ring, format);
-            _systemAudioError = null;
+            _systemAudioFailure = null;
+        }
+        catch (MissingAudioDriverException exception)
+        {
+            _systemAudioFailure = SystemAudioFailure.DriverMissing(exception.Message);
         }
         catch (AudioDeviceException exception)
         {
-            _systemAudioError = exception.Message;
+            _systemAudioFailure = SystemAudioFailure.Unavailable(exception.Message);
         }
     }
 

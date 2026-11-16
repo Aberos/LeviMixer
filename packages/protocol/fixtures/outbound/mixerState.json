@@ -10,6 +10,7 @@
       { "id": "pc", "name": "PC", "source": "system", "inputIndex": null, "gainDecibels": 0, "pan": 0, "muted": false, "soloed": false }
     ],
     "masterGainDecibels": 0,
-    "systemAudioError": null
+    "systemAudioError": null,
+    "systemAudioErrorCode": null
   }
 }

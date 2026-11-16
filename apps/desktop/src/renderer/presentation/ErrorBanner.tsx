@@ -1,17 +1,13 @@
 import { useMixerServices, useMixerState } from './MixerContext.tsx';
+import { SystemAudioBanner } from './SystemAudioBanner.tsx';
 
 export function ErrorBanner() {
   const { store } = useMixerServices();
-  const { error, mixer } = useMixerState();
-  const systemAudioError = mixer?.systemAudioError ?? null;
+  const { error, mixer, driverInstall, driverDownloadPercent } = useMixerState();
 
   return (
     <>
-      {systemAudioError !== null && (
-        <div className="banner banner-warning" role="status">
-          Canal PC indisponível: {systemAudioError}
-        </div>
-      )}
+      {mixer !== null && <SystemAudioBanner mixer={mixer} driverInstall={driverInstall} downloadPercent={driverDownloadPercent} />}
       {error !== null && (
         <div className="banner banner-error" role="alert">
           <span>{error}</span>

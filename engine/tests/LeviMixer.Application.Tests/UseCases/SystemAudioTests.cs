@@ -1,4 +1,5 @@
 using LeviMixer.Application.Devices;
+using LeviMixer.Application.Session;
 using LeviMixer.Application.UseCases;
 using LeviMixer.Domain.Mixing;
 
@@ -33,12 +34,37 @@ public sealed class SystemAudioTests
     public void Capture_failure_is_reported_but_mixing_continues()
     {
         using var mixer = new MixerFixture();
-        mixer.SystemAudio.FailureReason = "Install VB-Cable";
+        mixer.SystemAudio.FailureReason = "Device busy";
 
         var result = mixer.StartMixing.Execute(new StartMixingRequest(null, null, StreamFormat.Default));
 
         Assert.True(result.IsSuccess);
-        Assert.Equal("Install VB-Cable", mixer.Session.Status.SystemAudioError);
+        Assert.Equal(SystemAudioFailure.Unavailable("Device busy"), mixer.Session.Status.SystemAudioFailure);
+    }
+
+    [Fact]
+    public void Missing_driver_is_reported_with_its_own_code()
+    {
+        using var mixer = new MixerFixture();
+        mixer.SystemAudio.MissingDriverReason = "Install VB-Cable";
+
+        mixer.StartWithDefaults();
+
+        Assert.Equal("driverMissing", mixer.Session.Status.SystemAudioFailure?.Code);
+        Assert.True(mixer.Session.IsRunning);
+    }
+
+    [Fact]
+    public void Successful_restart_clears_the_previous_failure()
+    {
+        using var mixer = new MixerFixture();
+        mixer.SystemAudio.MissingDriverReason = "Install VB-Cable";
+        mixer.StartWithDefaults();
+        mixer.SystemAudio.MissingDriverReason = null;
+
+        mixer.StartWithDefaults();
+
+        Assert.Null(mixer.Session.Status.SystemAudioFailure);
     }
 
     [Fact]

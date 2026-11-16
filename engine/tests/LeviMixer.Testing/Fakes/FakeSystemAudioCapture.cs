@@ -9,10 +9,17 @@ public sealed class FakeSystemAudioCapture : ISystemAudioCapture
 
     public string? FailureReason { get; set; }
 
+    public string? MissingDriverReason { get; set; }
+
     public IReadOnlyList<FakeSystemAudioFeed> Started => _started;
 
     public IDisposable Start(ISampleWriter destination, StreamFormat format)
     {
+        if (MissingDriverReason is not null)
+        {
+            throw new MissingAudioDriverException(MissingDriverReason);
+        }
+
         if (FailureReason is not null)
         {
             throw new AudioDeviceException(FailureReason);

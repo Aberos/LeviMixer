@@ -13,7 +13,13 @@ internal static class WireMapper
         new([.. devices.Inputs.Select(ToWire)], [.. devices.Outputs.Select(ToWire)]);
 
     public static MixerStatePayload ToWire(MixerStatus status) =>
-        new(status.IsRunning, ToWire(status.Connection), [.. status.State.Channels.Select(ToWire)], DecibelsWire.ToWire(status.State.Master.Gain), status.SystemAudioError);
+        new(
+            status.IsRunning,
+            ToWire(status.Connection),
+            [.. status.State.Channels.Select(ToWire)],
+            DecibelsWire.ToWire(status.State.Master.Gain),
+            status.SystemAudioFailure?.Message,
+            status.SystemAudioFailure?.Code);
 
     public static MetersPayload ToWire(MeterReport report) =>
         new([.. report.Channels.Select(channel => new ChannelMeterWire(channel.ChannelId.Value, channel.Reading.Peak, channel.Reading.Rms))],

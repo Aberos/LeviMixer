@@ -10,6 +10,7 @@ export const runningState: MixerState = {
   ],
   masterGainDecibels: -6,
   systemAudioError: null,
+  systemAudioErrorCode: null,
 };
 
 export const savedSession: Session = {

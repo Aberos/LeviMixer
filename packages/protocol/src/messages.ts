@@ -36,7 +36,10 @@ export interface MixerState {
   readonly channels: readonly ChannelState[];
   readonly masterGainDecibels: GainDecibels;
   readonly systemAudioError: string | null;
+  readonly systemAudioErrorCode: SystemAudioErrorCode | null;
 }
+
+export type SystemAudioErrorCode = 'driverMissing' | 'unavailable';
 
 export interface LevelReading {
   readonly peak: number;
